@@ -1,16 +1,9 @@
-# 敏感環境變數
 .env
 .env.*
 *.env
-
-# Python 虛擬環境與快取
 venv/
 __pycache__/
 *.pyc
-
-# Node 依賴
 node_modules/
-
-# 日誌與其他
 *.log
 .DS_Store
