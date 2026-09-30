@@ -1,0 +1,41 @@
+# ── Android / Gradle
+.gradle/
+build/
+app/build/
+local.properties
+*.apk
+*.aab
+*.keystore
+*.jks
+captures/
+.externalNativeBuild/
+.cxx/
+
+# ── IDE
+.idea/
+*.iml
+.vscode/
+
+# ── Node
+node_modules/
+package-lock.json
+npm-debug.log*
+
+# ── 本地调试脚手架（含机器相关路径，不发布）
+test/
+*.ps1
+
+# ── 敏感文件：绝对不能提交
+#   插件的设备授权（含邀请码）、本地设置（含密码）、隧道凭据
+devices.json
+settings.json
+token
+token-lan
+.cloudflared/
+*.bak
+*.bak-*
+
+# ── 系统
+Thumbs.db
+desktop.ini
+.DS_Store

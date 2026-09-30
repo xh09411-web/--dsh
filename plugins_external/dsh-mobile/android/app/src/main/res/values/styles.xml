@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        全面屏（边到边）配色。
+
+        statusBarColor 原本写死 #FF101418（近黑），而 DSH 页面是纯白 —— 顶部一条黑带、
+        下面全白，非常割裂（实测：状态栏区域 #101418、正文 #FFFFFF）。
+        改成透明后，WebView 铺满整屏，页面自己的白色背景一直延伸到状态栏底下。
+
+        windowLightStatusBar=true 让状态栏图标变深色 —— 白底上必须是深色图标，
+        否则时间/电量是白的，等于看不见（实测过一次：状态栏区域一个深色像素都没有）。
+        这条写在主题里比运行时调 WindowInsetsController 可靠得多，
+        而且运行时那条在 setContentView 之前调用会因为 decor 未创建而 NPE 闪退。
+    -->
+    <style name="AppTheme" parent="@android:style/Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">#FFFFFFFF</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+</resources>

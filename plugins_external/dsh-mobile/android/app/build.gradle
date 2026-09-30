@@ -1,0 +1,38 @@
+plugins { id 'com.android.application' }
+
+// 密码不再编译进安装包：App 改成扫电脑上的二维码时把地址和密码一起读进来，
+// 所以同一个 App 谁都能用（扫谁的码就绑到谁的 DSH），也就不用再重建 APK 换密码了。
+// 二维码内容由电脑端 pocket 的「手机访问」面板生成。
+
+android {
+    namespace 'cn.kaelorvyn.dsh'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "cn.kaelorvyn.dsh"
+        minSdk 24
+        targetSdk 34
+        versionCode 2
+        versionName "2.0"
+    }
+
+    buildFeatures { buildConfig true }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            // 自用 App，不打算上架：release 直接用调试签名，省掉 keystore 管理。
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    // 纯 Java 的二维码解码核心，不依赖 AndroidX / Play 服务（本项目 android.useAndroidX=false）。
+    implementation 'com.google.zxing:core:3.5.3'
+}

@@ -1,0 +1,33 @@
+# Keyless replay keeps the LSP composition intact and replaces only the model adapter.
+- id: llm-deepseek
+  name: '@x1a0f3n9/dsh-llm-deepseek'
+  disabled: true
+
+- insert:
+    - id: lsp
+      name: '@x1a0f3n9/dsh-lsp'
+    - id: lsp-stdio
+      name: '@x1a0f3n9/dsh-lsp-stdio'
+      config:
+        servers:
+          fixture:
+            command: !!js process.execPath
+            args: ['./lsp-server.mjs']
+            extensionToLanguage:
+              '.ts': typescript
+    - id: tool-lsp
+      name: '@x1a0f3n9/dsh-tool-lsp'
+      config:
+        maxLocations: 1
+    - id: llm-replay
+      name: '@x1a0f3n9/dsh-llm-replay'
+      config:
+        providers:
+          - id: deepseek-official
+            name: DeepSeek
+            models:
+              - id: deepseek-v4-flash
+              - id: deepseek-v4-pro
+
+- id: timeout-policy
+  name: '@x1a0f3n9/dsh-tool-call-timeout-policy'
