@@ -1,0 +1,11 @@
+{
+  "name": "dsh-profile-recovery",
+  "private": true,
+  "dependencies": {},
+  "dsh": {
+    "profile": {
+      "bundles": ["@deepseek-ai/dsh-base", "@deepseek-ai/dsh-web-app"],
+      "patchReload": "live"
+    }
+  }
+}
